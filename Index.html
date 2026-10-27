@@ -1,0 +1,344 @@
+/**
+ * MRKHAN WORKS - Interactive Script
+ * Branding: MRKHAN WORKS
+ * Founder: Akram Khan
+ */
+
+// ==========================================
+// 1. CONFIGURATION (REPLACE WHATSAPP NUMBER)
+// ==========================================
+// REPLACE 'YOUR_WHATSAPP_NUMBER_HERE' with your real phone number.
+// Format: Country code followed by numbers, NO PLUS (+), spaces, or hyphens.
+// Example for India: '919876543210'
+const WHATSAPP_PHONE_NUMBER = 'YOUR_WHATSAPP_NUMBER_HERE';
+
+// ==========================================
+// 2. PRELOADER & INITIALIZATION
+// ==========================================
+window.addEventListener('load', () => {
+  const preloader = document.getElementById('preloader');
+  if (preloader) {
+    setTimeout(() => {
+      preloader.classList.add('hidden');
+    }, 450);
+  }
+
+  // Set current year in footer
+  const yearSpan = document.getElementById('currentYear');
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+  }
+});
+
+// ==========================================
+// 3. NAVBAR SCROLL & MOBILE TOGGLE
+// ==========================================
+const navbar = document.getElementById('navbar');
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 40) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+
+if (navToggle && navMenu) {
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('open');
+    navMenu.classList.toggle('active');
+  });
+
+  // Close mobile nav when clicking a link
+  navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.classList.remove('open');
+      navMenu.classList.remove('active');
+    });
+  });
+}
+
+// ==========================================
+// 4. THREE.JS 3D FLOATING BOOKS ANIMATION
+// ==========================================
+function initThreeScene() {
+  const container = document.getElementById('three-canvas-container');
+  if (!container || typeof THREE === 'undefined') return;
+
+  const scene = new THREE.Scene();
+
+  const camera = new THREE.PerspectiveCamera(
+    45,
+    container.clientWidth / container.clientHeight,
+    0.1,
+    100
+  );
+  camera.position.z = 18;
+
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+  container.appendChild(renderer.domElement);
+
+  // Lighting
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+  scene.add(ambientLight);
+
+  const blueLight = new THREE.DirectionalLight(0x00d2ff, 1.8);
+  blueLight.position.set(10, 10, 10);
+  scene.add(blueLight);
+
+  const purpleLight = new THREE.PointLight(0x9d4edd, 2.5, 30);
+  purpleLight.position.set(-10, -5, 5);
+  scene.add(purpleLight);
+
+  // Helper to build a styled 3D book mesh
+  function createBook(width, height, depth, coverColorHex) {
+    const geometry = new THREE.BoxGeometry(width, height, depth);
+    
+    const coverMaterial = new THREE.MeshStandardMaterial({
+      color: coverColorHex,
+      roughness: 0.35,
+      metalness: 0.4
+    });
+
+    const pagesMaterial = new THREE.MeshStandardMaterial({
+      color: 0xeeeeee,
+      roughness: 0.9,
+      metalness: 0.05
+    });
+
+    // Materials per face: [Right, Left, Top, Bottom, Front, Back]
+    // Right, Top, Bottom = pages; Left = spine; Front, Back = covers
+    const materials = [
+      pagesMaterial,
+      coverMaterial,
+      pagesMaterial,
+      pagesMaterial,
+      coverMaterial,
+      coverMaterial
+    ];
+
+    return new THREE.Mesh(geometry, materials);
+  }
+
+  // Create Book Cluster
+  const books = [];
+  const bookConfigs = [
+    { w: 3.2, h: 4.4, d: 0.6, col: 0x00d2ff, pos: [-4.5, 1.5, 0], rot: [0.3, 0.5, -0.2] },
+    { w: 3.0, h: 4.2, d: 0.7, col: 0x7928ca, pos: [4.8, -1.2, -1], rot: [-0.2, -0.6, 0.3] },
+    { w: 2.6, h: 3.8, d: 0.5, col: 0x1d4ed8, pos: [-3.8, -3.2, -2], rot: [0.4, -0.3, 0.5] },
+    { w: 2.8, h: 4.0, d: 0.55, col: 0x9333ea, pos: [4.2, 3.2, -2.5], rot: [-0.3, 0.4, -0.1] }
+  ];
+
+  bookConfigs.forEach(cfg => {
+    const book = createBook(cfg.w, cfg.h, cfg.d, cfg.col);
+    book.position.set(...cfg.pos);
+    book.rotation.set(...cfg.rot);
+    book.userData = {
+      baseY: cfg.pos[1],
+      rotSpeedX: (Math.random() - 0.5) * 0.005,
+      rotSpeedY: (Math.random() - 0.5) * 0.006,
+      floatSpeed: 0.0015 + Math.random() * 0.001,
+      seed: Math.random() * 10
+    };
+    scene.add(book);
+    books.push(book);
+  });
+
+  // Futuristic Starfield/Dust Particles
+  const particleCount = 120;
+  const particleGeo = new THREE.BufferGeometry();
+  const particlePositions = new Float32Array(particleCount * 3);
+
+  for (let i = 0; i < particleCount * 3; i += 3) {
+    particlePositions[i] = (Math.random() - 0.5) * 35;
+    particlePositions[i + 1] = (Math.random() - 0.5) * 25;
+    particlePositions[i + 2] = (Math.random() - 0.5) * 20;
+  }
+
+  particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+  const particleMat = new THREE.PointsMaterial({
+    size: 0.12,
+    color: 0x00d2ff,
+    transparent: true,
+    opacity: 0.55
+  });
+  const particleSystem = new THREE.Points(particleGeo, particleMat);
+  scene.add(particleSystem);
+
+  // Parallax Pointer Tracking
+  let targetMouseX = 0;
+  let targetMouseY = 0;
+  let curMouseX = 0;
+  let curMouseY = 0;
+
+  window.addEventListener('mousemove', (e) => {
+    targetMouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    targetMouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+  });
+
+  // Render Loop
+  let clock = new THREE.Clock();
+
+  function animate() {
+    requestAnimationFrame(animate);
+    const elapsedTime = clock.getElapsedTime();
+
+    // Gentle camera parallax interpolation
+    curMouseX += (targetMouseX - curMouseX) * 0.05;
+    curMouseY += (targetMouseY - curMouseY) * 0.05;
+    camera.position.x = curMouseX * 1.5;
+    camera.position.y = -curMouseY * 1.2;
+    camera.lookAt(0, 0, 0);
+
+    // Subtle floating of individual books
+    books.forEach(b => {
+      b.rotation.x += b.userData.rotSpeedX;
+      b.rotation.y += b.userData.rotSpeedY;
+      b.position.y = b.userData.baseY + Math.sin(elapsedTime + b.userData.seed) * 0.35;
+    });
+
+    // Slowly rotate dust particles
+    particleSystem.rotation.y = elapsedTime * 0.02;
+
+    renderer.render(scene, camera);
+  }
+
+  animate();
+
+  // Resize Handling
+  window.addEventListener('resize', () => {
+    if (!container) return;
+    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
+  });
+}
+
+// Initialize Three.js after DOM is ready
+document.addEventListener('DOMContentLoaded', initThreeScene);
+
+// ==========================================
+// 5. ACCORDION (FAQ)
+// ==========================================
+const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+  const btn = item.querySelector('.faq-question');
+  btn.addEventListener('click', () => {
+    const isActive = item.classList.contains('active');
+    
+    // Close other items
+    faqItems.forEach(i => i.classList.remove('active'));
+
+    // Toggle clicked item
+    if (!isActive) {
+      item.classList.add('active');
+    }
+  });
+});
+
+// ==========================================
+// 6. DYNAMIC FORM PRE-FILLING
+// ==========================================
+// Triggers when user clicks 'Select for Order' on Service or Pricing cards
+function wirePreFillTriggers() {
+  const serviceSelect = document.getElementById('userCategory');
+  const orderSection = document.getElementById('order');
+
+  document.querySelectorAll('[data-service-select]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const sName = btn.getAttribute('data-service-select');
+      if (serviceSelect) {
+        serviceSelect.value = sName;
+      }
+      if (orderSection) {
+        orderSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  document.querySelectorAll('[data-pricing-select]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const pName = btn.getAttribute('data-pricing-select');
+      if (serviceSelect) {
+        serviceSelect.value = pName;
+      }
+      if (orderSection) {
+        orderSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', wirePreFillTriggers);
+
+// ==========================================
+// 7. ORDER FORM & WHATSAPP GENERATOR
+// ==========================================
+const orderForm = document.getElementById('orderForm');
+
+if (orderForm) {
+  orderForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    let isValid = true;
+
+    // Form inputs
+    const nameInput = document.getElementById('userName');
+    const courseInput = document.getElementById('userCourse');
+    const deadlineInput = document.getElementById('userDeadline');
+    const serviceInput = document.getElementById('userCategory');
+    const notesInput = document.getElementById('userNotes');
+
+    const fields = [
+      { input: nameInput, errorId: 'nameError' },
+      { input: courseInput, errorId: 'courseError' },
+      { input: deadlineInput, errorId: 'deadlineError' },
+      { input: serviceInput, errorId: 'serviceError' },
+      { input: notesInput, errorId: 'notesError' }
+    ];
+
+    fields.forEach(field => {
+      const parent = field.input.parentElement;
+      if (!field.input.value.trim()) {
+        parent.classList.add('has-error');
+        isValid = false;
+      } else {
+        parent.classList.remove('has-error');
+      }
+    });
+
+    if (!isValid) return;
+
+    // Check placeholder guard
+    if (WHATSAPP_PHONE_NUMBER === '+91 9730316401' || !WHATSAPP_PHONE_NUMBER) {
+      alert("ATTENTION FOUNDER:\nPlease set your active WhatsApp phone number in 'script.js' on line 13.");
+      return;
+    }
+
+    // Prepare cleanly formatted WhatsApp text
+    const message = 
+      `*NEW ACADEMIC INQUIRY - MRKHAN WORKS*\n` +
+      `-----------------------------------------\n` +
+      `*Client Name:* ${nameInput.value.trim()}\n` +
+      `*Course/Class:* ${courseInput.value.trim()}\n` +
+      `*Service Category:* ${serviceInput.value.trim()}\n` +
+      `*Target Deadline:* ${deadlineInput.value}\n` +
+      `-----------------------------------------\n` +
+      `*Project Specifications:*\n${notesInput.value.trim()}\n` +
+      `-----------------------------------------\n` +
+      `_Sent from MRKHAN WORKS Web Portal (Founder: Akram Khan)_`;
+
+    // Construct WhatsApp Direct URI
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodedMessage}`;
+
+    // Open WhatsApp in new tab
+    window.open(whatsappUrl, '_blank');
+  });
+}
