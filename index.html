@@ -1,344 +1,554 @@
-/**
- * MRKHAN WORKS - Interactive Script
- * Branding: MRKHAN WORKS
- * Founder: Akram Khan
- */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-// ==========================================
-// 1. CONFIGURATION (REPLACE WHATSAPP NUMBER)
-// ==========================================
-// REPLACE 'YOUR_WHATSAPP_NUMBER_HERE' with your real phone number.
-// Format: Country code followed by numbers, NO PLUS (+), spaces, or hyphens.
-// Example for India: '919876543210'
-const WHATSAPP_PHONE_NUMBER = 'YOUR_WHATSAPP_NUMBER_HERE';
+  <title>MRKHAN WORKS | Smarter Academic Solutions</title>
 
-// ==========================================
-// 2. PRELOADER & INITIALIZATION
-// ==========================================
-window.addEventListener('load', () => {
-  const preloader = document.getElementById('preloader');
-  if (preloader) {
-    setTimeout(() => {
-      preloader.classList.add('hidden');
-    }, 450);
-  }
+  <meta name="description" content="MRKHAN WORKS provides academic projects, practical books, assignments, and computer science project assistance.">
 
-  // Set current year in footer
-  const yearSpan = document.getElementById('currentYear');
-  if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
-  }
-});
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-// ==========================================
-// 3. NAVBAR SCROLL & MOBILE TOGGLE
-// ==========================================
-const navbar = document.getElementById('navbar');
-const navToggle = document.getElementById('navToggle');
-const navMenu = document.getElementById('navMenu');
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 40) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
-  }
-});
+  <link rel="stylesheet" href="style.css">
 
-if (navToggle && navMenu) {
-  navToggle.addEventListener('click', () => {
-    navToggle.classList.toggle('open');
-    navMenu.classList.toggle('active');
-  });
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="script.js" defer></script>
+</head>
 
-  // Close mobile nav when clicking a link
-  navMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navToggle.classList.remove('open');
-      navMenu.classList.remove('active');
-    });
-  });
-}
+<body>
 
-// ==========================================
-// 4. THREE.JS 3D FLOATING BOOKS ANIMATION
-// ==========================================
-function initThreeScene() {
-  const container = document.getElementById('three-canvas-container');
-  if (!container || typeof THREE === 'undefined') return;
+  <!-- Background Effects -->
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
 
-  const scene = new THREE.Scene();
+  <!-- Loading Screen -->
+  <div class="preloader" id="preloader">
+    <div class="loader-content">
+      <div class="loader-ring"></div>
+      <div class="loader-logo">MRKHAN WORKS</div>
+      <p class="loader-text">PREPARING YOUR EXPERIENCE</p>
+    </div>
+  </div>
 
-  const camera = new THREE.PerspectiveCamera(
-    45,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    100
-  );
-  camera.position.z = 18;
+  <!-- Navigation -->
+  <header class="navbar" id="navbar">
+    <nav class="nav-container">
+      <a href="#home" class="brand-logo">
+        <span class="brand-prefix">MRKHAN</span>
+        <span class="brand-suffix">WORKS</span>
+      </a>
 
-  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-  renderer.setSize(container.clientWidth, container.clientHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
-  container.appendChild(renderer.domElement);
+      <div class="nav-menu" id="navMenu">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="#order" class="nav-cta-btn">Place an Order ↗</a>
+      </div>
 
-  // Lighting
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
-  scene.add(ambientLight);
+      <button class="nav-toggle" id="navToggle"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
 
-  const blueLight = new THREE.DirectionalLight(0x00d2ff, 1.8);
-  blueLight.position.set(10, 10, 10);
-  scene.add(blueLight);
+  <main>
 
-  const purpleLight = new THREE.PointLight(0x9d4edd, 2.5, 30);
-  purpleLight.position.set(-10, -5, 5);
-  scene.add(purpleLight);
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+      <div class="canvas-container" id="heroCanvas"></div>
 
-  // Helper to build a styled 3D book mesh
-  function createBook(width, height, depth, coverColorHex) {
-    const geometry = new THREE.BoxGeometry(width, height, depth);
-    
-    const coverMaterial = new THREE.MeshStandardMaterial({
-      color: coverColorHex,
-      roughness: 0.35,
-      metalness: 0.4
-    });
+      <div class="hero-content">
+        <div class="founder-badge">
+          <span class="badge-dot"></span>
+          Founded by Akram Khan
+        </div>
 
-    const pagesMaterial = new THREE.MeshStandardMaterial({
-      color: 0xeeeeee,
-      roughness: 0.9,
-      metalness: 0.05
-    });
+        <h1 class="hero-title">
+          Smarter Academic<br>
+          <span class="gradient-text">Solutions Start Here.</span>
+        </h1>
 
-    // Materials per face: [Right, Left, Top, Bottom, Front, Back]
-    // Right, Top, Bottom = pages; Left = spine; Front, Back = covers
-    const materials = [
-      pagesMaterial,
-      coverMaterial,
-      pagesMaterial,
-      pagesMaterial,
-      coverMaterial,
-      coverMaterial
-    ];
+        <p class="hero-description">
+          Your academic goals deserve better solutions.
+          Get help with practical books, assignments, academic projects,
+          and computer science projects—all in one place.
+        </p>
 
-    return new THREE.Mesh(geometry, materials);
-  }
+        <div class="hero-actions">
+          <a href="#services" class="btn btn-primary">
+            Explore Services →
+          </a>
 
-  // Create Book Cluster
-  const books = [];
-  const bookConfigs = [
-    { w: 3.2, h: 4.4, d: 0.6, col: 0x00d2ff, pos: [-4.5, 1.5, 0], rot: [0.3, 0.5, -0.2] },
-    { w: 3.0, h: 4.2, d: 0.7, col: 0x7928ca, pos: [4.8, -1.2, -1], rot: [-0.2, -0.6, 0.3] },
-    { w: 2.6, h: 3.8, d: 0.5, col: 0x1d4ed8, pos: [-3.8, -3.2, -2], rot: [0.4, -0.3, 0.5] },
-    { w: 2.8, h: 4.0, d: 0.55, col: 0x9333ea, pos: [4.2, 3.2, -2.5], rot: [-0.3, 0.4, -0.1] }
-  ];
+          <a href="#order" class="btn btn-secondary">
+            Get Started
+          </a>
+        </div>
 
-  bookConfigs.forEach(cfg => {
-    const book = createBook(cfg.w, cfg.h, cfg.d, cfg.col);
-    book.position.set(...cfg.pos);
-    book.rotation.set(...cfg.rot);
-    book.userData = {
-      baseY: cfg.pos[1],
-      rotSpeedX: (Math.random() - 0.5) * 0.005,
-      rotSpeedY: (Math.random() - 0.5) * 0.006,
-      floatSpeed: 0.0015 + Math.random() * 0.001,
-      seed: Math.random() * 10
-    };
-    scene.add(book);
-    books.push(book);
-  });
+        <div class="hero-metrics-pill">
+          <div class="metric-item">
+            <strong>Quality First</strong>
+            <span>Attention to detail</span>
+          </div>
 
-  // Futuristic Starfield/Dust Particles
-  const particleCount = 120;
-  const particleGeo = new THREE.BufferGeometry();
-  const particlePositions = new Float32Array(particleCount * 3);
+          <div class="metric-separator"></div>
 
-  for (let i = 0; i < particleCount * 3; i += 3) {
-    particlePositions[i] = (Math.random() - 0.5) * 35;
-    particlePositions[i + 1] = (Math.random() - 0.5) * 25;
-    particlePositions[i + 2] = (Math.random() - 0.5) * 20;
-  }
+          <div class="metric-item">
+            <strong>Student Focused</strong>
+            <span>Solutions for learners</span>
+          </div>
 
-  particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
-  const particleMat = new THREE.PointsMaterial({
-    size: 0.12,
-    color: 0x00d2ff,
-    transparent: true,
-    opacity: 0.55
-  });
-  const particleSystem = new THREE.Points(particleGeo, particleMat);
-  scene.add(particleSystem);
+          <div class="metric-separator"></div>
 
-  // Parallax Pointer Tracking
-  let targetMouseX = 0;
-  let targetMouseY = 0;
-  let curMouseX = 0;
-  let curMouseY = 0;
+          <div class="metric-item">
+            <strong>Easy Ordering</strong>
+            <span>WhatsApp support</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  window.addEventListener('mousemove', (e) => {
-    targetMouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-    targetMouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-  });
+    <!-- Services -->
+    <section class="section-padding" id="services">
+      <div class="site-container">
+        <div class="section-header">
+          <span class="section-tag">WHAT WE DO</span>
+          <h2 class="section-title">
+            Academic Support, <span class="gradient-text">Simplified.</span>
+          </h2>
+          <p class="section-subtitle">
+            Practical solutions to help you organise, understand,
+            and complete your academic work.
+          </p>
+        </div>
 
-  // Render Loop
-  let clock = new THREE.Clock();
+        <div class="services-grid">
 
-  function animate() {
-    requestAnimationFrame(animate);
-    const elapsedTime = clock.getElapsedTime();
+          <article class="service-card glass-card">
+            <div class="service-icon-box">📚</div>
+            <h3 class="service-title">Practical Books</h3>
+            <p class="service-desc">
+              Handwritten practical-book assistance for school and college
+              subjects, with neat presentation and careful work.
+            </p>
+            <ul class="service-checklist">
+              <li>Physics and Chemistry</li>
+              <li>Mathematics and Biology</li>
+              <li>Graphs and diagrams where required</li>
+            </ul>
+            <button class="service-action-btn" data-service="Practical Books">
+              Order this service →
+            </button>
+          </article>
 
-    // Gentle camera parallax interpolation
-    curMouseX += (targetMouseX - curMouseX) * 0.05;
-    curMouseY += (targetMouseY - curMouseY) * 0.05;
-    camera.position.x = curMouseX * 1.5;
-    camera.position.y = -curMouseY * 1.2;
-    camera.lookAt(0, 0, 0);
+          <article class="service-card glass-card">
+            <div class="service-icon-box">📝</div>
+            <h3 class="service-title">Assignments</h3>
+            <p class="service-desc">
+              Organised assignment assistance with clear formatting
+              and easy-to-follow presentation.
+            </p>
+            <ul class="service-checklist">
+              <li>School assignments</li>
+              <li>College assignments</li>
+              <li>Neat written presentation</li>
+            </ul>
+            <button class="service-action-btn" data-service="Assignments">
+              Order this service →
+            </button>
+          </article>
 
-    // Subtle floating of individual books
-    books.forEach(b => {
-      b.rotation.x += b.userData.rotSpeedX;
-      b.rotation.y += b.userData.rotSpeedY;
-      b.position.y = b.userData.baseY + Math.sin(elapsedTime + b.userData.seed) * 0.35;
-    });
+          <article class="service-card glass-card">
+            <div class="service-icon-box">💻</div>
+            <h3 class="service-title">Computer Science Projects</h3>
+            <p class="service-desc">
+              Get assistance with programming projects, documentation,
+              project ideas, and demonstrations.
+            </p>
+            <ul class="service-checklist">
+              <li>Web development projects</li>
+              <li>Programming assistance</li>
+              <li>Project documentation</li>
+            </ul>
+            <button class="service-action-btn" data-service="Computer Science Projects">
+              Order this service →
+            </button>
+          </article>
 
-    // Slowly rotate dust particles
-    particleSystem.rotation.y = elapsedTime * 0.02;
+          <article class="service-card glass-card">
+            <div class="service-icon-box">🎯</div>
+            <h3 class="service-title">School & College Projects</h3>
+            <p class="service-desc">
+              Support with project planning, research, layouts,
+              and presentation.
+            </p>
+            <ul class="service-checklist">
+              <li>Project planning</li>
+              <li>Charts and diagrams</li>
+              <li>Presentation assistance</li>
+            </ul>
+            <button class="service-action-btn" data-service="School and College Projects">
+              Order this service →
+            </button>
+          </article>
 
-    renderer.render(scene, camera);
-  }
+          <article class="service-card glass-card">
+            <div class="service-icon-box">🖨️</div>
+            <h3 class="service-title">Printing & Binding</h3>
+            <p class="service-desc">
+              Ask about printing, document preparation, and binding
+              options for your academic work.
+            </p>
+            <ul class="service-checklist">
+              <li>Document printing</li>
+              <li>Project printouts</li>
+              <li>Binding enquiries</li>
+            </ul>
+            <button class="service-action-btn" data-service="Printing and Binding">
+              Order this service →
+            </button>
+          </article>
 
-  animate();
+          <article class="service-card glass-card">
+            <div class="service-icon-box">✨</div>
+            <h3 class="service-title">Custom Academic Work</h3>
+            <p class="service-desc">
+              Have a different academic requirement? Tell us what
+              you need and discuss a suitable solution.
+            </p>
+            <ul class="service-checklist">
+              <li>Custom requirements</li>
+              <li>Individual enquiries</li>
+              <li>Discuss before ordering</li>
+            </ul>
+            <button class="service-action-btn" data-service="Custom Academic Work">
+              Discuss your project →
+            </button>
+          </article>
 
-  // Resize Handling
-  window.addEventListener('resize', () => {
-    if (!container) return;
-    camera.aspect = container.clientWidth / container.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(container.clientWidth, container.clientHeight);
-  });
-}
+        </div>
+      </div>
+    </section>
 
-// Initialize Three.js after DOM is ready
-document.addEventListener('DOMContentLoaded', initThreeScene);
+    <!-- How It Works -->
+    <section class="section-padding how-it-works-section" id="how-it-works">
+      <div class="site-container">
+        <div class="section-header">
+          <span class="section-tag">SIMPLE PROCESS</span>
+          <h2 class="section-title">Four Steps. <span class="gradient-text">One Easy Process.</span></h2>
+          <p class="section-subtitle">
+            Start with your requirements and confirm the details before
+            your order begins.
+          </p>
+        </div>
 
-// ==========================================
-// 5. ACCORDION (FAQ)
-// ==========================================
-const faqItems = document.querySelectorAll('.faq-item');
+        <div class="process-grid">
+          <article class="process-step glass-card">
+            <span class="step-num">01</span>
+            <h3 class="step-title">Choose a Service</h3>
+            <p class="step-desc">
+              Select the service that matches your academic requirements.
+            </p>
+          </article>
 
-faqItems.forEach(item => {
-  const btn = item.querySelector('.faq-question');
-  btn.addEventListener('click', () => {
-    const isActive = item.classList.contains('active');
-    
-    // Close other items
-    faqItems.forEach(i => i.classList.remove('active'));
+          <article class="process-step glass-card">
+            <span class="step-num">02</span>
+            <h3 class="step-title">Share Details</h3>
+            <p class="step-desc">
+              Tell us your subject, deadline, and specific instructions.
+            </p>
+          </article>
 
-    // Toggle clicked item
-    if (!isActive) {
-      item.classList.add('active');
-    }
-  });
-});
+          <article class="process-step glass-card">
+            <span class="step-num">03</span>
+            <h3 class="step-title">Confirm the Quote</h3>
+            <p class="step-desc">
+              Discuss the price, delivery details, and timeline before
+              confirming your order.
+            </p>
+          </article>
 
-// ==========================================
-// 6. DYNAMIC FORM PRE-FILLING
-// ==========================================
-// Triggers when user clicks 'Select for Order' on Service or Pricing cards
-function wirePreFillTriggers() {
-  const serviceSelect = document.getElementById('userCategory');
-  const orderSection = document.getElementById('order');
+          <article class="process-step glass-card">
+            <span class="step-num">04</span>
+            <h3 class="step-title">Get Started</h3>
+            <p class="step-desc">
+              Confirm your order and receive updates through WhatsApp.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-  document.querySelectorAll('[data-service-select]').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const sName = btn.getAttribute('data-service-select');
-      if (serviceSelect) {
-        serviceSelect.value = sName;
-      }
-      if (orderSection) {
-        orderSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  });
+    <!-- Pricing -->
+    <section class="section-padding" id="pricing">
+      <div class="site-container">
+        <div class="section-header">
+          <span class="section-tag">CLEAR & FLEXIBLE</span>
+          <h2 class="section-title">Pricing That Fits <span class="gradient-text">Your Needs.</span></h2>
+          <p class="section-subtitle">
+            Every project is different. Share your requirements
+            to receive a suitable quote.
+          </p>
+        </div>
 
-  document.querySelectorAll('[data-pricing-select]').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const pName = btn.getAttribute('data-pricing-select');
-      if (serviceSelect) {
-        serviceSelect.value = pName;
-      }
-      if (orderSection) {
-        orderSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  });
-}
-document.addEventListener('DOMContentLoaded', wirePreFillTriggers);
+        <div class="pricing-grid">
 
-// ==========================================
-// 7. ORDER FORM & WHATSAPP GENERATOR
-// ==========================================
-const orderForm = document.getElementById('orderForm');
+          <article class="pricing-card glass-card">
+            <div class="pricing-header">
+              <h3 class="pricing-plan">Basic</h3>
+              <p class="pricing-sub">For smaller academic tasks</p>
+              <div class="pricing-amount">
+                <span class="value">Custom</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li>Simple assignments</li>
+              <li>Basic document assistance</li>
+              <li>Requirements reviewed first</li>
+              <li>Quote before confirmation</li>
+            </ul>
+            <a href="#order" class="btn btn-secondary w-full">Get a Quote</a>
+          </article>
 
-if (orderForm) {
-  orderForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+          <article class="pricing-card popular glass-card">
+            <span class="popular-ribbon">Popular</span>
+            <div class="pricing-header">
+              <h3 class="pricing-plan">Standard</h3>
+              <p class="pricing-sub">For practical books and projects</p>
+              <div class="pricing-amount">
+                <span class="value">Custom</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li>Practical-book assistance</li>
+              <li>School and college projects</li>
+              <li>Subject-specific requirements</li>
+              <li>Price confirmed in advance</li>
+            </ul>
+            <a href="#order" class="btn btn-primary w-full">Request a Quote</a>
+          </article>
 
-    let isValid = true;
+          <article class="pricing-card glass-card">
+            <div class="pricing-header">
+              <h3 class="pricing-plan">Custom</h3>
+              <p class="pricing-sub">For specialised requirements</p>
+              <div class="pricing-amount">
+                <span class="value">Custom</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li>Computer science projects</li>
+              <li>Multiple service requests</li>
+              <li>Discuss project scope</li>
+              <li>Individual quote</li>
+            </ul>
+            <a href="#order" class="btn btn-secondary w-full">Discuss Your Needs</a>
+          </article>
 
-    // Form inputs
-    const nameInput = document.getElementById('userName');
-    const courseInput = document.getElementById('userCourse');
-    const deadlineInput = document.getElementById('userDeadline');
-    const serviceInput = document.getElementById('userCategory');
-    const notesInput = document.getElementById('userNotes');
+        </div>
 
-    const fields = [
-      { input: nameInput, errorId: 'nameError' },
-      { input: courseInput, errorId: 'courseError' },
-      { input: deadlineInput, errorId: 'deadlineError' },
-      { input: serviceInput, errorId: 'serviceError' },
-      { input: notesInput, errorId: 'notesError' }
-    ];
+        <p class="pricing-disclaimer">
+          Final pricing depends on the work required, subject,
+          deadline, and materials.
+        </p>
+      </div>
+    </section>
 
-    fields.forEach(field => {
-      const parent = field.input.parentElement;
-      if (!field.input.value.trim()) {
-        parent.classList.add('has-error');
-        isValid = false;
-      } else {
-        parent.classList.remove('has-error');
-      }
-    });
+    <!-- FAQ -->
+    <section class="section-padding" id="faq">
+      <div class="site-container">
+        <div class="section-header">
+          <span class="section-tag">HAVE QUESTIONS?</span>
+          <h2 class="section-title">Frequently Asked <span class="gradient-text">Questions.</span></h2>
+        </div>
 
-    if (!isValid) return;
+        <div class="faq-accordion">
 
-    // Check placeholder guard
-    if (WHATSAPP_PHONE_NUMBER === '+91 9730316401' || !WHATSAPP_PHONE_NUMBER) {
-      alert("ATTENTION FOUNDER:\nPlease set your active WhatsApp phone number in 'script.js' on line 13.");
-      return;
-    }
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              What services do you provide?
+              <span class="faq-arrow">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                We offer assistance with practical books, assignments,
+                academic projects, computer science projects, and
+                printing or binding enquiries.
+              </p>
+            </div>
+          </article>
 
-    // Prepare cleanly formatted WhatsApp text
-    const message = 
-      `*NEW ACADEMIC INQUIRY - MRKHAN WORKS*\n` +
-      `-----------------------------------------\n` +
-      `*Client Name:* ${nameInput.value.trim()}\n` +
-      `*Course/Class:* ${courseInput.value.trim()}\n` +
-      `*Service Category:* ${serviceInput.value.trim()}\n` +
-      `*Target Deadline:* ${deadlineInput.value}\n` +
-      `-----------------------------------------\n` +
-      `*Project Specifications:*\n${notesInput.value.trim()}\n` +
-      `-----------------------------------------\n` +
-      `_Sent from MRKHAN WORKS Web Portal (Founder: Akram Khan)_`;
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              How can I find out the price?
+              <span class="faq-arrow">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Send your requirements using the order form. We can discuss
+                the scope and provide a quote before you confirm.
+              </p>
+            </div>
+          </article>
 
-    // Construct WhatsApp Direct URI
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodedMessage}`;
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              How do I place an order?
+              <span class="faq-arrow">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Complete the form below and submit it through WhatsApp
+                after checking your details.
+              </p>
+            </div>
+          </article>
 
-    // Open WhatsApp in new tab
-    window.open(whatsappUrl, '_blank');
-  });
-}
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Can I request a custom project?
+              <span class="faq-arrow">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Yes. Choose the custom option and describe your project,
+                subject, and deadline.
+              </p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Order Form -->
+    <section class="section-padding" id="order">
+      <div class="site-container">
+        <div class="order-wrapper glass-card">
+
+          <div class="order-info">
+            <span class="section-tag">LET'S GET STARTED</span>
+            <h2 class="order-heading">
+              Your Next Project<br>
+              <span class="gradient-text">Starts Here.</span>
+            </h2>
+
+            <p class="order-subtext">
+              Tell us what you need. Your details will be prepared
+              as a WhatsApp message so you can review and send them.
+            </p>
+
+            <div class="contact-card">
+              <h4>MRKHAN WORKS</h4>
+              <p>Smarter Academic Solutions</p>
+              <span class="order-highlight">Founded by Akram Khan</span>
+            </div>
+          </div>
+
+          <form class="order-form" id="orderForm">
+
+            <div class="form-group">
+              <label for="customerName">Your Name *</label>
+              <input type="text" id="customerName" name="customerName"
+                placeholder="Enter your name" required>
+              <span class="error-msg">Please enter your name.</span>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="customerPhone">Your Phone Number *</label>
+                <input type="tel" id="customerPhone" name="customerPhone"
+                  placeholder="Enter phone number" required>
+                <span class="error-msg">Please enter your phone number.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="qualification">Class / Qualification</label>
+                <input type="text" id="qualification" name="qualification"
+                  placeholder="e.g. Diploma, 12th">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="serviceType">Choose a Service *</label>
+              <select id="serviceType" name="serviceType" required>
+                <option value="">Select a service</option>
+                <option value="Practical Books">Practical Books</option>
+                <option value="Assignments">Assignments</option>
+                <option value="Computer Science Projects">Computer Science Projects</option>
+                <option value="School and College Projects">School & College Projects</option>
+                <option value="Printing and Binding">Printing & Binding</option>
+                <option value="Custom Academic Work">Custom Academic Work</option>
+              </select>
+              <span class="error-msg">Please choose a service.</span>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject"
+                  placeholder="e.g. Physics, DBMS">
+              </div>
+
+              <div class="form-group">
+                <label for="deadline">Required By</label>
+                <input type="date" id="deadline" name="deadline">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="orderDetails">Project Details *</label>
+              <textarea id="orderDetails" name="orderDetails" rows="4"
+                placeholder="Describe what you need..." required></textarea>
+              <span class="error-msg">Please describe your requirements.</span>
+            </div>
+
+            <button type="submit" class="btn btn-whatsapp w-full">
+              Continue to WhatsApp →
+            </button>
+
+            <p class="pricing-disclaimer">
+              WhatsApp will open with your message. Review it and press
+              Send to submit your enquiry.
+            </p>
+
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="site-container">
+
+      <div class="footer-content">
+
+        <div class="footer-brand">
+          <a href="#home" class="brand-logo">
+            <span class="brand-prefix">MRKHAN</span>
+            <span class="brand-suffix">WORKS</span>
+          </a>
+
+          <p class="footer-tagline">Smarter Academic Solutions</p>
+          <p class="footer-founder">Founded by Akram Khan</p>
+        </div>
+
+        <div class="footer-links-group">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+          </ul>
+        </d
