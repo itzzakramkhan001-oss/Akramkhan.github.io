@@ -189,41 +189,34 @@ document.addEventListener("DOMContentLoaded", () => {
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const serviceButtons =
-    document.querySelectorAll(".service-action-btn");
+/* SERVICE BUTTONS */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(
+    ".service-action-btn[data-service]"
+  );
 
   const serviceSelect = document.getElementById("serviceType");
-  const orderSection = document.getElementById("order");
+  const orderForm = document.getElementById("orderForm");
 
-  serviceButtons.forEach((button) => {
+  buttons.forEach((button) => {
     button.addEventListener("click", () => {
-      const serviceName =
-        button.dataset.service ||
-        button.getAttribute("data-service");
+      const serviceName = button.dataset.service;
 
-      if (serviceSelect && serviceName) {
-        const matchingOption = Array.from(
-          serviceSelect.options
-        ).find((option) => {
-          return (
-            option.value.toLowerCase() ===
-              serviceName.toLowerCase() ||
-            option.textContent.trim().toLowerCase() ===
-              serviceName.toLowerCase()
-          );
-        });
+      if (!serviceSelect || !orderForm) return;
 
-        if (matchingOption) {
-          serviceSelect.value = matchingOption.value;
-        }
+      const option = Array.from(serviceSelect.options).find(
+        (item) => item.value === serviceName
+      );
+
+      if (option) {
+        serviceSelect.value = serviceName;
       }
 
-      if (orderSection) {
-        orderSection.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }
+      orderForm.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
     });
   });
 });
