@@ -232,7 +232,6 @@ document.addEventListener("DOMContentLoaded", () => {
 /* =========================================
    9. WHATSAPP ORDER FORM
 ========================================= */
-
 document.addEventListener("DOMContentLoaded", () => {
   const orderForm = document.getElementById("orderForm");
 
@@ -242,44 +241,58 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
 
     const getValue = (id) => {
-      const element = document.getElementById(id);
-      return element ? element.value.trim() : "";
+      const field = document.getElementById(id);
+      return field ? field.value.trim() : "";
     };
 
-    const customerName = getValue("customerName");
-    const customerPhone = getValue("customerPhone");
+    const name = getValue("customerName");
+    const phone = getValue("customerPhone");
     const qualification = getValue("qualification");
-    const serviceType = getValue("serviceType");
+    const service = getValue("serviceType");
     const subject = getValue("subject");
     const deadline = getValue("deadline");
-    const orderDetails = getValue("orderDetails");
+    const details = getValue("orderDetails");
 
-    if (!customerName || !customerPhone || !serviceType) {
-      alert(
-        "Please fill in your name, phone number and service."
-      );
+    if (!name || !phone || !qualification ||
+        !service || !subject || !deadline) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
+    const whatsappNumber = WHATSAPP_PHONE_NUMBER
+      .replace(/\D/g, "");
+
+    if (
+      !whatsappNumber ||
+      whatsappNumber === "91YOURNUMBERHERE"
+    ) {
+      alert("Please configure your WhatsApp number in script.js.");
       return;
     }
 
     const message = [
-      "Hello MRKHAN WORKS! 👋",
+      "📋 *NEW ORDER — MRKHAN WORKS*",
       "",
-      "I would like to place an order.",
+      "👤 *Customer Name:* " + name,
+      "📱 *Customer Phone:* " + phone,
+      "🎓 *Class / Qualification:* " + qualification,
+      "📚 *Service:* " + service,
+      "📖 *Subject / Project:* " + subject,
+      "📅 *Required Date:* " + deadline,
+      "📝 *Additional Details:* " + (details || "Not provided"),
       "",
-      "👤 Name: " + customerName,
-      "📱 Customer Phone: " + customerPhone,
-      "🎓 Qualification: " + (qualification || "Not provided"),
-      "📚 Service: " + serviceType,
-      "📖 Subject: " + (subject || "Not provided"),
-      "📅 Deadline: " + (deadline || "Not provided"),
-      "📝 Details: " + (orderDetails || "Not provided"),
-      "",
-      "Please share the price and further details.",
+      "Please confirm the order and share the price.",
       "",
       "Thank you!"
     ].join("\n");
 
-    openWhatsApp(message);
+    const whatsappURL =
+      "https://wa.me/" +
+      whatsappNumber +
+      "?text=" +
+      encodeURIComponent(message);
+
+    window.location.href = whatsappURL;
   });
 });
 
