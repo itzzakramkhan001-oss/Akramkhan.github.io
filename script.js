@@ -182,14 +182,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-
-
 /* =========================================
    8. SERVICE BUTTONS
 ========================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-/* SERVICE BUTTONS */
 
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll(
@@ -203,15 +198,21 @@ document.addEventListener("DOMContentLoaded", () => {
     button.addEventListener("click", () => {
       const serviceName = button.dataset.service;
 
-      if (!serviceSelect || !orderForm) return;
+      if (!serviceSelect || !orderForm) {
+        console.error("Order form or service dropdown not found.");
+        return;
+      }
 
       const option = Array.from(serviceSelect.options).find(
-        (item) => item.value === serviceName
+        (item) => item.value.trim() === serviceName.trim()
       );
 
-      if (option) {
-        serviceSelect.value = serviceName;
+      if (!option) {
+        console.error("Service option not found:", serviceName);
+        return;
       }
+
+      serviceSelect.value = option.value;
 
       orderForm.scrollIntoView({
         behavior: "smooth",
