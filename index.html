@@ -8,6 +8,8 @@
 
   <meta name="description" content="MRKHAN WORKS provides academic projects, practical books, assignments, and computer science project assistance.">
 
+  <meta name="theme-color" content="#080d20">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -21,11 +23,11 @@
 
 <body>
 
-  <!-- Background Effects -->
+  <!-- BACKGROUND -->
   <div class="glow-orb orb-1"></div>
   <div class="glow-orb orb-2"></div>
 
-  <!-- Loading Screen -->
+  <!-- PRELOADER -->
   <div class="preloader" id="preloader">
     <div class="loader-content">
       <div class="loader-ring"></div>
@@ -34,9 +36,10 @@
     </div>
   </div>
 
-  <!-- Navigation -->
+  <!-- NAVIGATION -->
   <header class="navbar" id="navbar">
     <nav class="nav-container">
+
       <a href="#home" class="brand-logo">
         <span class="brand-prefix">MRKHAN</span>
         <span class="brand-suffix">WORKS</span>
@@ -52,22 +55,26 @@
       </div>
 
       <button class="nav-toggle" id="navToggle"
+        type="button"
         aria-label="Toggle navigation menu"
         aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
       </button>
+
     </nav>
   </header>
 
   <main>
 
-    <!-- Hero Section -->
+    <!-- HERO SECTION -->
     <section class="hero-section" id="home">
+
       <div class="canvas-container" id="heroCanvas"></div>
 
       <div class="hero-content">
+
         <div class="founder-badge">
           <span class="badge-dot"></span>
           Founded by Akram Khan
@@ -95,6 +102,7 @@
         </div>
 
         <div class="hero-metrics-pill">
+
           <div class="metric-item">
             <strong>Quality First</strong>
             <span>Attention to detail</span>
@@ -113,18 +121,25 @@
             <strong>Easy Ordering</strong>
             <span>WhatsApp support</span>
           </div>
+
         </div>
       </div>
     </section>
 
-    <!-- Services -->
+
+    <!-- SERVICES SECTION -->
     <section class="section-padding" id="services">
+
       <div class="site-container">
+
         <div class="section-header">
           <span class="section-tag">WHAT WE DO</span>
+
           <h2 class="section-title">
-            Academic Support, <span class="gradient-text">Simplified.</span>
+            Academic Support,
+            <span class="gradient-text">Simplified.</span>
           </h2>
+
           <p class="section-subtitle">
             Practical solutions to help you organise, understand,
             and complete your academic work.
@@ -133,104 +148,151 @@
 
         <div class="services-grid">
 
+          <!-- SERVICE 1 -->
           <article class="service-card glass-card">
             <div class="service-icon-box">📚</div>
+
             <h3 class="service-title">Practical Books</h3>
+
             <p class="service-desc">
-              Handwritten practical-book assistance for school and college
-              subjects, with neat presentation and careful work.
+              Handwritten practical-book assistance for school
+              and college subjects, with neat presentation.
             </p>
+
             <ul class="service-checklist">
               <li>Physics and Chemistry</li>
               <li>Mathematics and Biology</li>
-              <li>Graphs and diagrams where required</li>
+              <li>Graphs and diagrams</li>
             </ul>
-            <button class="service-action-btn" data-service="Practical Books">
+
+            <button type="button"
+              class="service-action-btn"
+              data-service="Handwritten Practical Books">
               Order this service →
             </button>
           </article>
 
+
+          <!-- SERVICE 2 -->
           <article class="service-card glass-card">
             <div class="service-icon-box">📝</div>
+
             <h3 class="service-title">Assignments</h3>
+
             <p class="service-desc">
-              Organised assignment assistance with clear formatting
-              and easy-to-follow presentation.
+              Organised assignment assistance with clear
+              formatting and easy-to-follow presentation.
             </p>
+
             <ul class="service-checklist">
               <li>School assignments</li>
               <li>College assignments</li>
               <li>Neat written presentation</li>
             </ul>
-            <button class="service-action-btn" data-service="Assignments">
+
+            <button type="button"
+              class="service-action-btn"
+              data-service="Assignments">
               Order this service →
             </button>
           </article>
 
+
+          <!-- SERVICE 3 -->
           <article class="service-card glass-card">
             <div class="service-icon-box">💻</div>
+
             <h3 class="service-title">Computer Science Projects</h3>
+
             <p class="service-desc">
-              Get assistance with programming projects, documentation,
-              project ideas, and demonstrations.
+              Get assistance with programming projects,
+              documentation, project ideas, and demonstrations.
             </p>
+
             <ul class="service-checklist">
               <li>Web development projects</li>
               <li>Programming assistance</li>
               <li>Project documentation</li>
             </ul>
-            <button class="service-action-btn" data-service="Computer Science Projects">
+
+            <button type="button"
+              class="service-action-btn"
+              data-service="Computer Science Projects">
               Order this service →
             </button>
           </article>
 
+
+          <!-- SERVICE 4 -->
           <article class="service-card glass-card">
             <div class="service-icon-box">🎯</div>
+
             <h3 class="service-title">School & College Projects</h3>
+
             <p class="service-desc">
-              Support with project planning, research, layouts,
-              and presentation.
+              Support with project planning, research,
+              layouts, and presentation.
             </p>
+
             <ul class="service-checklist">
               <li>Project planning</li>
               <li>Charts and diagrams</li>
               <li>Presentation assistance</li>
             </ul>
-            <button class="service-action-btn" data-service="School and College Projects">
+
+            <button type="button"
+              class="service-action-btn"
+              data-service="Academic Projects">
               Order this service →
             </button>
           </article>
 
+
+          <!-- SERVICE 5 -->
           <article class="service-card glass-card">
             <div class="service-icon-box">🖨️</div>
+
             <h3 class="service-title">Printing & Binding</h3>
+
             <p class="service-desc">
-              Ask about printing, document preparation, and binding
-              options for your academic work.
+              Ask about printing, document preparation,
+              and binding options for academic work.
             </p>
+
             <ul class="service-checklist">
               <li>Document printing</li>
               <li>Project printouts</li>
               <li>Binding enquiries</li>
             </ul>
-            <button class="service-action-btn" data-service="Printing and Binding">
+
+            <button type="button"
+              class="service-action-btn"
+              data-service="Printing and Binding">
               Order this service →
             </button>
           </article>
 
+
+          <!-- SERVICE 6 -->
           <article class="service-card glass-card">
             <div class="service-icon-box">✨</div>
+
             <h3 class="service-title">Custom Academic Work</h3>
+
             <p class="service-desc">
-              Have a different academic requirement? Tell us what
-              you need and discuss a suitable solution.
+              Have a different academic requirement?
+              Tell us what you need and discuss a suitable solution.
             </p>
+
             <ul class="service-checklist">
               <li>Custom requirements</li>
               <li>Individual enquiries</li>
               <li>Discuss before ordering</li>
             </ul>
-            <button class="service-action-btn" data-service="Custom Academic Work">
+
+            <button type="button"
+              class="service-action-btn"
+              data-service="Other">
               Discuss your project →
             </button>
           </article>
@@ -239,24 +301,34 @@
       </div>
     </section>
 
-    <!-- How It Works -->
-    <section class="section-padding how-it-works-section" id="how-it-works">
+
+    <!-- HOW IT WORKS -->
+    <section class="section-padding how-it-works-section"
+      id="how-it-works">
+
       <div class="site-container">
+
         <div class="section-header">
           <span class="section-tag">SIMPLE PROCESS</span>
-          <h2 class="section-title">Four Steps. <span class="gradient-text">One Easy Process.</span></h2>
+
+          <h2 class="section-title">
+            Four Steps.
+            <span class="gradient-text">One Easy Process.</span>
+          </h2>
+
           <p class="section-subtitle">
-            Start with your requirements and confirm the details before
-            your order begins.
+            Start with your requirements and confirm the details
+            before your order begins.
           </p>
         </div>
 
         <div class="process-grid">
+
           <article class="process-step glass-card">
             <span class="step-num">01</span>
             <h3 class="step-title">Choose a Service</h3>
             <p class="step-desc">
-              Select the service that matches your academic requirements.
+              Select the service that matches your requirements.
             </p>
           </article>
 
@@ -264,7 +336,7 @@
             <span class="step-num">02</span>
             <h3 class="step-title">Share Details</h3>
             <p class="step-desc">
-              Tell us your subject, deadline, and specific instructions.
+              Tell us your subject, deadline, and instructions.
             </p>
           </article>
 
@@ -272,8 +344,7 @@
             <span class="step-num">03</span>
             <h3 class="step-title">Confirm the Quote</h3>
             <p class="step-desc">
-              Discuss the price, delivery details, and timeline before
-              confirming your order.
+              Discuss the price, delivery details, and timeline.
             </p>
           </article>
 
@@ -284,16 +355,25 @@
               Confirm your order and receive updates through WhatsApp.
             </p>
           </article>
+
         </div>
       </div>
     </section>
 
-    <!-- Pricing -->
+
+    <!-- PRICING -->
     <section class="section-padding" id="pricing">
+
       <div class="site-container">
+
         <div class="section-header">
           <span class="section-tag">CLEAR & FLEXIBLE</span>
-          <h2 class="section-title">Pricing That Fits <span class="gradient-text">Your Needs.</span></h2>
+
+          <h2 class="section-title">
+            Pricing That Fits
+            <span class="gradient-text">Your Needs.</span>
+          </h2>
+
           <p class="section-subtitle">
             Every project is different. Share your requirements
             to receive a suitable quote.
@@ -306,52 +386,72 @@
             <div class="pricing-header">
               <h3 class="pricing-plan">Basic</h3>
               <p class="pricing-sub">For smaller academic tasks</p>
+
               <div class="pricing-amount">
                 <span class="value">Custom</span>
               </div>
             </div>
+
             <ul class="pricing-features">
               <li>Simple assignments</li>
               <li>Basic document assistance</li>
               <li>Requirements reviewed first</li>
               <li>Quote before confirmation</li>
             </ul>
-            <a href="#order" class="btn btn-secondary w-full">Get a Quote</a>
+
+            <a href="#order" class="btn btn-secondary w-full">
+              Get a Quote
+            </a>
           </article>
 
+
           <article class="pricing-card popular glass-card">
+
             <span class="popular-ribbon">Popular</span>
+
             <div class="pricing-header">
               <h3 class="pricing-plan">Standard</h3>
               <p class="pricing-sub">For practical books and projects</p>
+
               <div class="pricing-amount">
                 <span class="value">Custom</span>
               </div>
             </div>
+
             <ul class="pricing-features">
               <li>Practical-book assistance</li>
               <li>School and college projects</li>
               <li>Subject-specific requirements</li>
               <li>Price confirmed in advance</li>
             </ul>
-            <a href="#order" class="btn btn-primary w-full">Request a Quote</a>
+
+            <a href="#order" class="btn btn-primary w-full">
+              Request a Quote
+            </a>
           </article>
 
+
           <article class="pricing-card glass-card">
+
             <div class="pricing-header">
               <h3 class="pricing-plan">Custom</h3>
               <p class="pricing-sub">For specialised requirements</p>
+
               <div class="pricing-amount">
                 <span class="value">Custom</span>
               </div>
             </div>
+
             <ul class="pricing-features">
               <li>Computer science projects</li>
               <li>Multiple service requests</li>
               <li>Discuss project scope</li>
               <li>Individual quote</li>
             </ul>
-            <a href="#order" class="btn btn-secondary w-full">Discuss Your Needs</a>
+
+            <a href="#order" class="btn btn-secondary w-full">
+              Discuss Your Needs
+            </a>
           </article>
 
         </div>
@@ -360,172 +460,88 @@
           Final pricing depends on the work required, subject,
           deadline, and materials.
         </p>
+
       </div>
     </section>
 
+
     <!-- FAQ -->
     <section class="section-padding" id="faq">
+
       <div class="site-container">
+
         <div class="section-header">
           <span class="section-tag">HAVE QUESTIONS?</span>
-          <h2 class="section-title">Frequently Asked <span class="gradient-text">Questions.</span></h2>
+
+          <h2 class="section-title">
+            Frequently Asked
+            <span class="gradient-text">Questions.</span>
+          </h2>
         </div>
 
         <div class="faq-accordion">
 
           <article class="faq-item">
-            <button class="faq-question" aria-expanded="false">
+            <button type="button" class="faq-question"
+              aria-expanded="false">
               What services do you provide?
               <span class="faq-arrow">+</span>
             </button>
+
             <div class="faq-answer">
               <p>
-                We offer assistance with practical books, assignments,
-                academic projects, computer science projects, and
-                printing or binding enquiries.
+                We offer assistance with practical books,
+                assignments, academic projects, computer science
+                projects, and printing or binding enquiries.
               </p>
             </div>
           </article>
 
+
           <article class="faq-item">
-            <button class="faq-question" aria-expanded="false">
+            <button type="button" class="faq-question"
+              aria-expanded="false">
               How can I find out the price?
               <span class="faq-arrow">+</span>
             </button>
+
             <div class="faq-answer">
               <p>
-                Send your requirements using the order form. We can discuss
-                the scope and provide a quote before you confirm.
+                Send your requirements using the order form.
+                We can discuss the scope and provide a quote
+                before you confirm.
               </p>
             </div>
           </article>
 
+
           <article class="faq-item">
-            <button class="faq-question" aria-expanded="false">
+            <button type="button" class="faq-question"
+              aria-expanded="false">
               How do I place an order?
               <span class="faq-arrow">+</span>
             </button>
+
             <div class="faq-answer">
               <p>
-                Complete the form below and submit it through WhatsApp
-                after checking your details.
+                Complete the form below and submit it through
+                WhatsApp after checking your details.
               </p>
             </div>
           </article>
-<form id="orderForm" class="order-form">
 
-  <div class="form-group">
-    <label for="customerName">Full Name *</label>
-    <input
-      type="text"
-      id="customerName"
-      name="customerName"
-      placeholder="Enter your full name"
-      autocomplete="name"
-      required
-    >
-  </div>
 
-  <div class="form-row">
-
-    <div class="form-group">
-      <label for="customerPhone">Phone Number *</label>
-      <input
-        type="tel"
-        id="customerPhone"
-        name="customerPhone"
-        placeholder="Enter your phone number"
-        inputmode="tel"
-        autocomplete="tel"
-        pattern="[0-9+\-\s]{10,15}"
-        required
-      >
-    </div>
-
-    <div class="form-group">
-      <label for="qualification">Class / Qualification *</label>
-      <select id="qualification" name="qualification" required>
-        <option value="">Select class</option>
-        <option value="10th">10th</option>
-        <option value="11th">11th</option>
-        <option value="12th">12th</option>
-        <option value="Diploma First Year">Diploma First Year</option>
-        <option value="Diploma Second Year">Diploma Second Year</option>
-        <option value="Diploma Third Year">Diploma Third Year</option>
-        <option value="Degree">Degree</option>
-        <option value="Other">Other</option>
-      </select>
-    </div>
-
-  </div>
-
-  <div class="form-group">
-    <label for="serviceType">Choose a Service *</label>
-    <select id="serviceType" name="serviceType" required>
-      <option value="">Select a service</option>
-      <option value="Handwritten Practical Books">Handwritten Practical Books</option>
-      <option value="Assignments">Assignments</option>
-      <option value="Academic Projects">Academic Projects</option>
-      <option value="Computer Science Projects">Computer Science Projects</option>
-      <option value="Printing and Binding">Printing and Binding</option>
-      <option value="Other">Other</option>
-    </select>
-  </div>
-
-  <div class="form-row">
-
-    <div class="form-group">
-      <label for="subject">Subject / Project Name *</label>
-      <input
-        type="text"
-        id="subject"
-        name="subject"
-        placeholder="e.g. DBMS, Physics, C++"
-        required
-      >
-    </div>
-
-    <div class="form-group">
-      <label for="deadline">Required Date *</label>
-      <input
-        type="date"
-        id="deadline"
-        name="deadline"
-        required
-      >
-    </div>
-
-  </div>
-
-  <div class="form-group">
-    <label for="orderDetails">Additional Details</label>
-    <textarea
-      id="orderDetails"
-      name="orderDetails"
-      rows="4"
-      placeholder="Mention page count, instructions, quantity or other requirements..."
-    ></textarea>
-  </div>
-
-  <button type="submit" class="service-action-btn">
-    Continue to WhatsApp →
-  </button>
-
-  <p class="form-note">
-    Your order details will be prepared in WhatsApp.
-    Review the message and press Send to submit your order.
-  </p>
-
-</form>
           <article class="faq-item">
-            <button class="faq-question" aria-expanded="false">
+            <button type="button" class="faq-question"
+              aria-expanded="false">
               Can I request a custom project?
               <span class="faq-arrow">+</span>
             </button>
+
             <div class="faq-answer">
               <p>
-                Yes. Choose the custom option and describe your project,
-                subject, and deadline.
+                Yes. Choose the custom option and describe
+                your project, subject, and deadline.
               </p>
             </div>
           </article>
@@ -534,27 +550,135 @@
       </div>
     </section>
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="site-container">
 
-      <div class="footer-content">
+    <!-- ORDER FORM -->
+    <section class="section-padding" id="order">
 
-        <div class="footer-brand">
-          <a href="#home" class="brand-logo">
-            <span class="brand-prefix">MRKHAN</span>
-            <span class="brand-suffix">WORKS</span>
-          </a>
+      <div class="site-container">
 
-          <p class="footer-tagline">Smarter Academic Solutions</p>
-          <p class="footer-founder">Founded by Akram Khan</p>
+        <div class="section-header">
+          <span class="section-tag">PLACE YOUR ORDER</span>
+
+          <h2 class="section-title">
+            Start Your
+            <span class="gradient-text">Order.</span>
+          </h2>
+
+          <p class="section-subtitle">
+            Share your requirements and continue to WhatsApp.
+          </p>
         </div>
 
-        <div class="footer-links-group">
-          <h4>Explore</h4>
-          <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#how-it-works">How It Works</a></li>
-          </ul>
-        </d
+        <div class="order-wrapper glass-card">
+
+          <div class="order-info">
+
+            <h3 class="order-heading">
+              Let's Get Started.
+            </h3>
+
+            <p class="order-subtext">
+              Fill in the details so we can understand
+              your academic requirements.
+            </p>
+
+            <div class="contact-card">
+              <strong>💬 WhatsApp Support</strong>
+              <p>Connect with us to discuss your order.</p>
+            </div>
+
+            <div class="order-highlight">
+              <strong>Simple & Easy Ordering</strong>
+              <p>Review your details before sending your message.</p>
+            </div>
+
+          </div>
+
+
+          <!-- WHATSAPP FORM -->
+          <form id="orderForm" class="order-form">
+
+            <div class="form-group">
+              <label for="customerName">Full Name *</label>
+
+              <input
+                type="text"
+                id="customerName"
+                name="customerName"
+                placeholder="Enter your full name"
+                autocomplete="name"
+                required
+              >
+            </div>
+
+
+            <div class="form-row">
+
+              <div class="form-group">
+                <label for="customerPhone">Phone Number *</label>
+
+                <input
+                  type="tel"
+                  id="customerPhone"
+                  name="customerPhone"
+                  placeholder="Enter your phone number"
+                  inputmode="tel"
+                  autocomplete="tel"
+                  pattern="[0-9+\-\s]{10,15}"
+                  required
+                >
+              </div>
+
+
+              <div class="form-group">
+                <label for="qualification">
+                  Class / Qualification *
+                </label>
+
+                <select id="qualification"
+                  name="qualification" required>
+
+                  <option value="">Select class</option>
+                  <option value="10th">10th</option>
+                  <option value="11th">11th</option>
+                  <option value="12th">12th</option>
+                  <option value="Diploma First Year">
+                    Diploma First Year
+                  </option>
+                  <option value="Diploma Second Year">
+                    Diploma Second Year
+                  </option>
+                  <option value="Diploma Third Year">
+                    Diploma Third Year
+                  </option>
+                  <option value="Degree">Degree</option>
+                  <option value="Other">Other</option>
+
+                </select>
+              </div>
+
+            </div>
+
+
+            <div class="form-group">
+              <label for="serviceType">Choose a Service *</label>
+
+              <select id="serviceType"
+                name="serviceType" required>
+
+                <option value="">Select a service</option>
+
+                <option value="Handwritten Practical Books">
+                  Practical Books
+                </option>
+
+                <option value="Assignments">
+                  Assignments
+                </option>
+
+                <option value="Computer Science Projects">
+                  Computer Science Projects
+                </option>
+
+                <option value="Academic Projects">
+                  School & College 
