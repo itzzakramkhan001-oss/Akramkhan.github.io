@@ -226,10 +226,14 @@ document.addEventListener("DOMContentLoaded", () => {
 /* =========================================
    9. WHATSAPP ORDER FORM
 ========================================= */
+
 document.addEventListener("DOMContentLoaded", () => {
   const orderForm = document.getElementById("orderForm");
 
-  if (!orderForm) return;
+  if (!orderForm) {
+    console.error("Order form not found!");
+    return;
+  }
 
   orderForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -247,49 +251,36 @@ document.addEventListener("DOMContentLoaded", () => {
     const deadline = getValue("deadline");
     const details = getValue("orderDetails");
 
-    if (!name || !phone || !qualification ||
-        !service || !subject || !deadline) {
+    if (
+      !name || !phone || !qualification ||
+      !service || !subject || !deadline
+    ) {
       alert("Please fill in all required fields.");
       return;
     }
 
-    const whatsappNumber = WHATSAPP_PHONE_NUMBER
-      .replace(/\D/g, "");
+    const whatsappNumber = WHATSAPP_PHONE_NUMBER.replace(/\D/g, "");
 
-    if (
-      !whatsappNumber ||
-      whatsappNumber === "91YOURNUMBERHERE"
-    ) {
-      alert("Please configure your WhatsApp number in script.js.");
-      return;
-    }
-
-    const message = [
-      "📋 *NEW ORDER — MRKHAN WORKS*",
-      "",
-      "👤 *Customer Name:* " + name,
-      "📱 *Customer Phone:* " + phone,
-      "🎓 *Class / Qualification:* " + qualification,
-      "📚 *Service:* " + service,
-      "📖 *Subject / Project:* " + subject,
-      "📅 *Required Date:* " + deadline,
-      "📝 *Additional Details:* " + (details || "Not provided"),
-      "",
-      "Please confirm the order and share the price.",
-      "",
-      "Thank you!"
-    ].join("\n");
+    const message =
+      "NEW ORDER - MRKHAN WORKS\n\n" +
+      "Customer Name: " + name + "\n" +
+      "Customer Phone: " + phone + "\n" +
+      "Qualification: " + qualification + "\n" +
+      "Service: " + service + "\n" +
+      "Subject / Project: " + subject + "\n" +
+      "Required Date: " + deadline + "\n" +
+      "Additional Details: " + (details || "Not provided") +
+      "\n\nPlease confirm my order and share the price.";
 
     const whatsappURL =
-      "https://wa.me/" +
+      "https://api.whatsapp.com/send?phone=" +
       whatsappNumber +
-      "?text=" +
+      "&text=" +
       encodeURIComponent(message);
 
-    window.location.href = whatsappURL;
+    window.open(whatsappURL, "_blank");
   });
 });
-
 
 /* =========================================
    10. DIRECT WHATSAPP BUTTONS
