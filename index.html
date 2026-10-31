@@ -596,68 +596,104 @@
 
 
           <!-- WHATSAPP FORM -->
-          <form id="orderForm" class="order-form">
+<form id="orderForm" class="order-form">
 
-            <div class="form-group">
-              <label for="customerName">Full Name *</label>
+  <div class="form-group">
+    <label for="customerName">Full Name *</label>
+    <input
+      type="text"
+      id="customerName"
+      name="customerName"
+      placeholder="Enter your full name"
+      required
+    >
+  </div>
 
-              <input
-                type="text"
-                id="customerName"
-                name="customerName"
-                placeholder="Enter your full name"
-                autocomplete="name"
-                required
-              >
-            </div>
+  <div class="form-row">
 
+    <div class="form-group">
+      <label for="customerPhone">Phone Number *</label>
+      <input
+        type="tel"
+        id="customerPhone"
+        name="customerPhone"
+        placeholder="Enter phone number"
+        required
+      >
+    </div>
 
-            <div class="form-row">
+    <div class="form-group">
+      <label for="qualification">Qualification *</label>
+      <select id="qualification" name="qualification" required>
+        <option value="">Select qualification</option>
+        <option value="10th">10th</option>
+        <option value="11th">11th</option>
+        <option value="12th">12th</option>
+        <option value="Diploma First Year">Diploma First Year</option>
+        <option value="Diploma Second Year">Diploma Second Year</option>
+        <option value="Diploma Third Year">Diploma Third Year</option>
+        <option value="Degree">Degree</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
 
-              <div class="form-group">
-                <label for="customerPhone">Phone Number *</label>
+  </div>
 
-                <input
-                  type="tel"
-                  id="customerPhone"
-                  name="customerPhone"
-                  placeholder="Enter your phone number"
-                  inputmode="tel"
-                  autocomplete="tel"
-                  pattern="[0-9+\-\s]{10,15}"
-                  required
-                >
-              </div>
+  <div class="form-group">
+    <label for="serviceType">Choose a Service *</label>
+    <select id="serviceType" name="serviceType" required>
+      <option value="">Select a service</option>
+      <option value="Handwritten Practical Books">Practical Books</option>
+      <option value="Assignments">Assignments</option>
+      <option value="Computer Science Projects">Computer Science Projects</option>
+      <option value="Academic Projects">School & College Projects</option>
+      <option value="Printing and Binding">Printing & Binding</option>
+      <option value="Other">Custom Academic Work</option>
+    </select>
+  </div>
 
+  <div class="form-group">
+    <label for="subject">Subject / Project Name *</label>
+    <input
+      type="text"
+      id="subject"
+      name="subject"
+      placeholder="e.g. DBMS, Physics, C++"
+      required
+    >
+  </div>
 
-              <div class="form-group">
-                <label for="qualification">
-                  Class / Qualification *
-                </label>
+  <!-- DATE FIELD -->
+  <div class="form-group date-group">
+    <label for="deadline">Required Date *</label>
+    <input
+      type="date"
+      id="deadline"
+      name="deadline"
+      required
+    >
+  </div>
 
-                <select id="qualification"
-                  name="qualification" required>
+  <div class="form-group">
+    <label for="orderDetails">Additional Details</label>
+    <textarea
+      id="orderDetails"
+      name="orderDetails"
+      rows="4"
+      placeholder="Enter page count, instructions or other requirements..."
+    ></textarea>
+  </div>
 
-                  <option value="">Select class</option>
-                  <option value="10th">10th</option>
-                  <option value="11th">11th</option>
-                  <option value="12th">12th</option>
-                  <option value="Diploma First Year">
-                    Diploma First Year
-                  </option>
-                  <option value="Diploma Second Year">
-                    Diploma Second Year
-                  </option>
-                  <option value="Diploma Third Year">
-                    Diploma Third Year
-                  </option>
-                  <option value="Degree">Degree</option>
-                  <option value="Other">Other</option>
+  <button type="submit" class="service-action-btn">
+    Continue to WhatsApp →
+  </button>
 
-                </select>
-              </div>
+  <p class="form-note">
+    Your order details will be prepared in WhatsApp.
+    Review your message and press Send to submit your order.
+  </p>
 
-            </div>
+</form>
 
 
             <div class="form-group">
