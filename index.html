@@ -412,7 +412,111 @@
               </p>
             </div>
           </article>
+<form id="orderForm" class="order-form">
 
+  <div class="form-group">
+    <label for="customerName">Full Name *</label>
+    <input
+      type="text"
+      id="customerName"
+      name="customerName"
+      placeholder="Enter your full name"
+      autocomplete="name"
+      required
+    >
+  </div>
+
+  <div class="form-row">
+
+    <div class="form-group">
+      <label for="customerPhone">Phone Number *</label>
+      <input
+        type="tel"
+        id="customerPhone"
+        name="customerPhone"
+        placeholder="Enter your phone number"
+        inputmode="tel"
+        autocomplete="tel"
+        pattern="[0-9+\-\s]{10,15}"
+        required
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="qualification">Class / Qualification *</label>
+      <select id="qualification" name="qualification" required>
+        <option value="">Select class</option>
+        <option value="10th">10th</option>
+        <option value="11th">11th</option>
+        <option value="12th">12th</option>
+        <option value="Diploma First Year">Diploma First Year</option>
+        <option value="Diploma Second Year">Diploma Second Year</option>
+        <option value="Diploma Third Year">Diploma Third Year</option>
+        <option value="Degree">Degree</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="form-group">
+    <label for="serviceType">Choose a Service *</label>
+    <select id="serviceType" name="serviceType" required>
+      <option value="">Select a service</option>
+      <option value="Handwritten Practical Books">Handwritten Practical Books</option>
+      <option value="Assignments">Assignments</option>
+      <option value="Academic Projects">Academic Projects</option>
+      <option value="Computer Science Projects">Computer Science Projects</option>
+      <option value="Printing and Binding">Printing and Binding</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+
+  <div class="form-row">
+
+    <div class="form-group">
+      <label for="subject">Subject / Project Name *</label>
+      <input
+        type="text"
+        id="subject"
+        name="subject"
+        placeholder="e.g. DBMS, Physics, C++"
+        required
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="deadline">Required Date *</label>
+      <input
+        type="date"
+        id="deadline"
+        name="deadline"
+        required
+      >
+    </div>
+
+  </div>
+
+  <div class="form-group">
+    <label for="orderDetails">Additional Details</label>
+    <textarea
+      id="orderDetails"
+      name="orderDetails"
+      rows="4"
+      placeholder="Mention page count, instructions, quantity or other requirements..."
+    ></textarea>
+  </div>
+
+  <button type="submit" class="service-action-btn">
+    Continue to WhatsApp →
+  </button>
+
+  <p class="form-note">
+    Your order details will be prepared in WhatsApp.
+    Review the message and press Send to submit your order.
+  </p>
+
+</form>
           <article class="faq-item">
             <button class="faq-question" aria-expanded="false">
               Can I request a custom project?
@@ -429,104 +533,6 @@
         </div>
       </div>
     </section>
-
-    <!-- Order Form -->
-    <section class="section-padding" id="order">
-      <div class="site-container">
-        <div class="order-wrapper glass-card">
-
-          <div class="order-info">
-            <span class="section-tag">LET'S GET STARTED</span>
-            <h2 class="order-heading">
-              Your Next Project<br>
-              <span class="gradient-text">Starts Here.</span>
-            </h2>
-
-            <p class="order-subtext">
-              Tell us what you need. Your details will be prepared
-              as a WhatsApp message so you can review and send them.
-            </p>
-
-            <div class="contact-card">
-              <h4>MRKHAN WORKS</h4>
-              <p>Smarter Academic Solutions</p>
-              <span class="order-highlight">Founded by Akram Khan</span>
-            </div>
-          </div>
-
-          <form class="order-form" id="orderForm">
-
-            <div class="form-group">
-              <label for="customerName">Your Name *</label>
-              <input type="text" id="customerName" name="customerName"
-                placeholder="Enter your name" required>
-              <span class="error-msg">Please enter your name.</span>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="customerPhone">Your Phone Number *</label>
-                <input type="tel" id="customerPhone" name="customerPhone"
-                  placeholder="Enter phone number" required>
-                <span class="error-msg">Please enter your phone number.</span>
-              </div>
-
-              <div class="form-group">
-                <label for="qualification">Class / Qualification</label>
-                <input type="text" id="qualification" name="qualification"
-                  placeholder="e.g. Diploma, 12th">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="serviceType">Choose a Service *</label>
-              <select id="serviceType" name="serviceType" required>
-                <option value="">Select a service</option>
-                <option value="Practical Books">Practical Books</option>
-                <option value="Assignments">Assignments</option>
-                <option value="Computer Science Projects">Computer Science Projects</option>
-                <option value="School and College Projects">School & College Projects</option>
-                <option value="Printing and Binding">Printing & Binding</option>
-                <option value="Custom Academic Work">Custom Academic Work</option>
-              </select>
-              <span class="error-msg">Please choose a service.</span>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="subject">Subject</label>
-                <input type="text" id="subject" name="subject"
-                  placeholder="e.g. Physics, DBMS">
-              </div>
-
-              <div class="form-group">
-                <label for="deadline">Required By</label>
-                <input type="date" id="deadline" name="deadline">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="orderDetails">Project Details *</label>
-              <textarea id="orderDetails" name="orderDetails" rows="4"
-                placeholder="Describe what you need..." required></textarea>
-              <span class="error-msg">Please describe your requirements.</span>
-            </div>
-
-            <button type="submit" class="btn btn-whatsapp w-full">
-              Continue to WhatsApp →
-            </button>
-
-            <p class="pricing-disclaimer">
-              WhatsApp will open with your message. Review it and press
-              Send to submit your enquiry.
-            </p>
-
-          </form>
-        </div>
-      </div>
-    </section>
-
-  </main>
 
   <!-- Footer -->
   <footer class="site-footer">
